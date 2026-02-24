@@ -1,0 +1,64 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+version: 2
+
+project_name: nishku
+
+before:
+  hooks:
+    - go mod download
+    - go mod tidy
+
+builds:
+  - id: nishku
+    main: .
+    binary: nishku
+    goos:
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X github.com/riyasyash/nishku/cmd.Version={{.Version}}
+      - -X github.com/riyasyash/nishku/cmd.GitCommit={{.Commit}}
+      - -X github.com/riyasyash/nishku/cmd.BuildDate={{.Date}}
+    env:
+      - CGO_ENABLED=1
+    flags:
+      - -buildvcs=false
+
+archives:
+  - id: nishku
+    name_template: >-
+      {{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}
+    files:
+      - LICENSE
+      - README.md
+      - CHANGELOG.md
+
+checksum:
+  name_template: "checksums.txt"
+  algorithm: sha256
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+  groups:
+    - title: Features
+      regexp: "^.*feat[(\\w)]*:+.*$"
+      order: 0
+    - title: Bug fixes
+      regexp: "^.*fix[(\\w)]*:+.*$"
+      order: 1
+    - title: Others
+      order: 999
+
+release:
+  github:
+    owner: riyasyash
+    name: nishku
+  prerelease: auto

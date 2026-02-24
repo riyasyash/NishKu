@@ -21,7 +21,7 @@ var versionCmd = &cobra.Command{
 	Long:  `Display version, build information, and release details for nishku.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		verbose, _ := cmd.Flags().GetBool("verbose")
-		
+
 		if verbose {
 			// Detailed version information
 			fmt.Printf("nishku version %s\n", Version)
