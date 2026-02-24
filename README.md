@@ -4,12 +4,18 @@
 
 **Save and restore window positions across displays**
 
-[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/riyasyash/nishku/releases)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/riyasyash/nishku/releases)
 [![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg)](https://github.com/riyasyash/nishku)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Go Version](https://img.shields.io/badge/go-1.21+-00ADD8.svg)](https://go.dev/)
+[![Homebrew](https://img.shields.io/badge/homebrew-available-orange.svg)](https://github.com/riyasyash/homebrew-tools)
 
 Perfect for switching between different monitor setups (home vs office, docked vs undocked)
+
+```bash
+brew tap riyasyash/tools
+brew install nishku
+```
 
 [Features](#features) •
 [Installation](#installation) •
@@ -52,6 +58,35 @@ Nishku is a command-line tool that captures and restores window positions and si
 
 ## Installation
 
+### Homebrew (Recommended)
+
+The easiest way to install nishku on macOS:
+
+```bash
+brew tap riyasyash/tools
+brew install nishku
+```
+
+### Download Binary
+
+Download the latest release from [GitHub Releases](https://github.com/riyasyash/nishku/releases):
+
+```bash
+# Apple Silicon (M1/M2/M3)
+curl -L https://github.com/riyasyash/nishku/releases/latest/download/nishku-darwin-arm64.tar.gz | tar xz
+sudo mv nishku /usr/local/bin/
+
+# Intel Mac
+curl -L https://github.com/riyasyash/nishku/releases/latest/download/nishku-darwin-amd64.tar.gz | tar xz
+sudo mv nishku /usr/local/bin/
+```
+
+### Using Go Install
+
+```bash
+go install github.com/riyasyash/nishku@latest
+```
+
 ### From Source
 
 ```bash
@@ -67,12 +102,6 @@ sudo make install
 nishku version
 ```
 
-### Using Go Install
-
-```bash
-go install github.com/riyasyash/nishku@latest
-```
-
 ### Requirements
 
 - macOS 10.14 (Mojave) or later
@@ -81,7 +110,14 @@ go install github.com/riyasyash/nishku@latest
 
 ## Quick Start
 
-### 1. Check Your Setup
+### 1. Install
+
+```bash
+brew tap riyasyash/tools
+brew install nishku
+```
+
+### 2. Check Your Setup
 
 ```bash
 nishku doctor
@@ -275,24 +311,6 @@ make deps
 make build
 ./nishku doctor
 ```
-
-## Roadmap
-
-### v0.1.0
-- [ ] Bug fixes from user feedback
-- [ ] Shell completions (bash/zsh/fish)
-- [ ] Improved error messages
-
-### v0.2.0
-- [ ] Profile templates
-- [ ] Auto-detect profile based on displays
-- [ ] Verbose/debug mode
-
-### v1.0.0
-- [ ] Stable API and CLI
-- [ ] Comprehensive tests
-- [ ] Homebrew formula
-- [ ] Linux support
 
 ## License
 
